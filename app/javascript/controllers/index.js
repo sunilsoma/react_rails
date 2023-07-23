@@ -9,3 +9,6 @@ application.register("hello", HelloController)
 
 import TestController from "./test_controller"
 application.register("test", TestController)
+
+import ReferralController from "./referral_controller"
+application.register("referral", ReferralController)

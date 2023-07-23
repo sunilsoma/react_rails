@@ -1660,7 +1660,7 @@
             }
             return dispatcher.useContext(Context2);
           }
-          function useState12(initialState) {
+          function useState13(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -2462,7 +2462,7 @@
           exports.useMemo = useMemo3;
           exports.useReducer = useReducer;
           exports.useRef = useRef15;
-          exports.useState = useState12;
+          exports.useState = useState13;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2958,9 +2958,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React52 = require_react();
+          var React54 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React52.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React54.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -4565,7 +4565,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React52.Children.forEach(props.children, function(child) {
+                  React54.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13012,7 +13012,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React52.Component().refs;
+          var emptyRefsObject = new React54.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23614,7 +23614,7 @@
               unmarkContainerAsRoot(container);
             }
           };
-          function createRoot2(container, options2) {
+          function createRoot3(container, options2) {
             if (!isValidContainer(container)) {
               throw new Error("createRoot(...): Target container is not a DOM element.");
             }
@@ -23985,7 +23985,7 @@
                 error2('You are importing createRoot from "react-dom" which is not supported. You should instead import it from "react-dom/client".');
               }
             }
-            return createRoot2(container, options2);
+            return createRoot3(container, options2);
           }
           function hydrateRoot$1(container, initialChildren, options2) {
             {
@@ -43553,9 +43553,30 @@
     }
   };
 
+  // app/javascript/controllers/referral_controller.js
+  var import_react15 = __toESM(require_react());
+  var import_client2 = __toESM(require_client());
+
+  // app/javascript/components/Referral.jsx
+  var import_react14 = __toESM(require_react());
+  var Referral = ({ referrals }) => {
+    return /* @__PURE__ */ import_react14.default.createElement("div", null, /* @__PURE__ */ import_react14.default.createElement("h2", null, "Referrals"), /* @__PURE__ */ import_react14.default.createElement("ul", null, referrals.map((referral) => /* @__PURE__ */ import_react14.default.createElement("li", { key: referral.id }, referral.email))));
+  };
+  var Referral_default = Referral;
+
+  // app/javascript/controllers/referral_controller.js
+  var referral_controller_default = class extends Controller {
+    connect() {
+      const app = this.element;
+      const referrals = JSON.parse(app.dataset.referrals);
+      (0, import_client2.createRoot)(app).render(/* @__PURE__ */ import_react15.default.createElement(Referral_default, { referrals }));
+    }
+  };
+
   // app/javascript/controllers/index.js
   application.register("hello", hello_controller_default);
   application.register("test", test_controller_default);
+  application.register("referral", referral_controller_default);
 })();
 /*! Bundled license information:
 

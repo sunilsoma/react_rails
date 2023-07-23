@@ -1,0 +1,19 @@
+<div id="app">
+  <div data-controller="referral" data-referrals="<%= @referrals.to_json %>">
+  </div>
+</div>
+
+
+<h1>Referred Email Addresses</h1>
+<ul>
+  <% @referrals.each do |referral| %>
+    <li><%= referral.email %></li>
+  <% end %>
+</ul>
+
+<%= form_with(url: referrals_path, method: :post) do |form| %>
+  <%= form.label :email, 'Email Address' %>
+  <%= form.email_field :email %>
+  <%= form.submit 'Send Referral Email' %>
+<% end %>
+

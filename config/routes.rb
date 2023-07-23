@@ -1,8 +1,21 @@
 Rails.application.routes.draw do
   get 'test/home'
-  #root 'pages#home'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  devise_for :users
+  
+  root 'pages#index'
+  get 'pages/index'
+  resources :referrals, only: [:index, :create]
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  namespace :api do
+    devise_for :users, skip: [:registrations, :sessions]
+    as :user do
+      # API registration routes
+      post 'users' => 'registrations#create'
+      # API session routes
+      post 'users/sign_in' => 'sessions#create'
+      delete 'users/sign_out' => 'sessions#destroy'
+    end
+  end
+
+  get '/member-data', to: 'members#show'
 end
