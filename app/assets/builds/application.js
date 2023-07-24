@@ -1660,7 +1660,7 @@
             }
             return dispatcher.useContext(Context2);
           }
-          function useState14(initialState) {
+          function useState15(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -2462,7 +2462,7 @@
           exports.useMemo = useMemo3;
           exports.useReducer = useReducer;
           exports.useRef = useRef16;
-          exports.useState = useState14;
+          exports.useState = useState15;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2958,9 +2958,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React63 = require_react();
+          var React65 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React63.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React65.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -4565,7 +4565,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React63.Children.forEach(props.children, function(child) {
+                  React65.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -13012,7 +13012,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React63.Component().refs;
+          var emptyRefsObject = new React65.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23614,7 +23614,7 @@
               unmarkContainerAsRoot(container);
             }
           };
-          function createRoot4(container, options2) {
+          function createRoot5(container, options2) {
             if (!isValidContainer(container)) {
               throw new Error("createRoot(...): Target container is not a DOM element.");
             }
@@ -23985,7 +23985,7 @@
                 error2('You are importing createRoot from "react-dom" which is not supported. You should instead import it from "react-dom/client".');
               }
             }
-            return createRoot4(container, options2);
+            return createRoot5(container, options2);
           }
           function hydrateRoot$1(container, initialChildren, options2) {
             {
@@ -44789,7 +44789,7 @@
 
   // app/javascript/components/Login.jsx
   var import_react17 = __toESM(require_react());
-  var Login = ({ loginRememberable, authenticityToken, loginPath }) => {
+  var Login = ({ authenticityToken, loginPath }) => {
     return /* @__PURE__ */ import_react17.default.createElement(Container_default, { style: { display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", height: "100vh" } }, /* @__PURE__ */ import_react17.default.createElement("div", { style: { textAlign: "center" } }, /* @__PURE__ */ import_react17.default.createElement("h2", null, "Login"), /* @__PURE__ */ import_react17.default.createElement("form", { action: loginPath, method: "post" }, /* @__PURE__ */ import_react17.default.createElement("input", { type: "hidden", name: "authenticity_token", value: authenticityToken }), /* @__PURE__ */ import_react17.default.createElement(Box_default, { mt: 2, mb: 2 }, /* @__PURE__ */ import_react17.default.createElement(
       TextField_default,
       {
@@ -44824,11 +44824,63 @@
     }
   };
 
+  // app/javascript/controllers/signup_controller.js
+  var import_react20 = __toESM(require_react());
+  var import_client4 = __toESM(require_client());
+
+  // app/javascript/components/Signup.jsx
+  var import_react19 = __toESM(require_react());
+  var Signup = ({ authenticityToken, signupPath }) => {
+    return /* @__PURE__ */ import_react19.default.createElement(Container_default, { style: { display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", height: "100vh" } }, /* @__PURE__ */ import_react19.default.createElement("div", { style: { textAlign: "center" } }, /* @__PURE__ */ import_react19.default.createElement("h2", null, "Signup"), /* @__PURE__ */ import_react19.default.createElement("form", { action: signupPath, method: "post" }, /* @__PURE__ */ import_react19.default.createElement("input", { type: "hidden", name: "authenticity_token", value: authenticityToken }), /* @__PURE__ */ import_react19.default.createElement(Box_default, { mt: 2, mb: 2 }, /* @__PURE__ */ import_react19.default.createElement(
+      TextField_default,
+      {
+        label: "Email Address",
+        variant: "outlined",
+        type: "email",
+        name: "user[email]",
+        id: "email",
+        style: { marginBottom: "10px" }
+      }
+    )), /* @__PURE__ */ import_react19.default.createElement(Box_default, { mt: 2, mb: 2 }, /* @__PURE__ */ import_react19.default.createElement(
+      TextField_default,
+      {
+        label: "Password",
+        variant: "outlined",
+        type: "password",
+        name: "user[password]",
+        id: "password",
+        style: { marginBottom: "10px" }
+      }
+    )), /* @__PURE__ */ import_react19.default.createElement(Box_default, { mt: 2, mb: 2 }, /* @__PURE__ */ import_react19.default.createElement(
+      TextField_default,
+      {
+        label: "Password Confirmation",
+        variant: "outlined",
+        type: "password",
+        name: "user[password_confirmation]",
+        id: "password_confirmation",
+        style: { marginBottom: "10px" }
+      }
+    )), /* @__PURE__ */ import_react19.default.createElement(Button_default, { variant: "contained", color: "primary", type: "submit" }, "Signup"))));
+  };
+  var Signup_default = Signup;
+
+  // app/javascript/controllers/signup_controller.js
+  var signup_controller_default = class extends Controller {
+    connect() {
+      const app = this.element;
+      const authenticityToken = app.dataset.token;
+      const signupPath = app.dataset.signupPath;
+      (0, import_client4.createRoot)(app).render(/* @__PURE__ */ import_react20.default.createElement(Signup_default, { authenticityToken, signupPath }));
+    }
+  };
+
   // app/javascript/controllers/index.js
   application.register("hello", hello_controller_default);
   application.register("test", test_controller_default);
   application.register("referral", referral_controller_default);
   application.register("login", login_controller_default);
+  application.register("signup", signup_controller_default);
 })();
 /*! Bundled license information:
 
