@@ -1,4 +1,5 @@
 class ReferralsController < ApplicationController
+  before_action :authenticate_user!
   def index
     @referrals = current_user.referrals
   end
