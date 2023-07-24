@@ -1,16 +1,42 @@
 import React, {useState} from "react"
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField, List, ListItem, ListItemText, Container, Box, ListItemIcon } from '@material-ui/core';
+import { Favorite } from '@material-ui/icons';
 
-const Referral = ({ referrals }) => {
+const Referral = ({ referrals, authenticityToken, referralsPath }) => {
   return (
-    <div>
-      <h2>Referrals</h2>
-      <ul>
-        {referrals.map((referral) => (
-          <li key={referral.id}>{referral.email}</li>
-        ))}
-      </ul>
-    </div>
+      <Container style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', height: '100vh' }}>
+    	<div style={{ textAlign: 'center' }}>
+      	<h2>Referrals</h2>
+	      <form action={referralsPath} method="post">
+	        <input type="hidden" name="authenticity_token" value={authenticityToken} />
+	        <Box mt={2} mb={2}>
+	        	<TextField  label="Email Address"
+	          variant="outlined" type="email" name="email" id="email" style={{ marginBottom: '10px' }} />
+	        </Box>
+	        <Button  variant="contained" color="primary" type="submit">Send Referral Email</Button>
+	      </form>
+
+
+	      <List component="nav" aria-label="main mailbox folders">
+	        
+	        
+
+	        {referrals.map((referral) => (
+	        
+
+	        
+			        <ListItem button key={referral.id}>
+			          <ListItemIcon>
+			            <Favorite />
+			          </ListItemIcon>
+			           <ListItemText primary={referral.email} />
+			        </ListItem>
+
+
+	         ))}
+	      </List>
+    	</div>
+      </Container>
   );
 };
 

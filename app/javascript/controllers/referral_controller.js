@@ -13,7 +13,16 @@ export default class extends Controller {
 
     const app = this.element;
     const referrals = JSON.parse(app.dataset.referrals);
-    createRoot(app).render(<Referral referrals={referrals} />);
+    // const form = document.querySelector('[data-controller="referral-form"] form');
+    // const formData = JSON.parse(form.querySelector('input[name="form_data"]').value);
+    // const authenticityToken = formData.authenticity_token;
+
+     const authenticityToken = app.dataset.token;
+     const referralsPath = app.dataset.referralsPath;
+    createRoot(app).render(<Referral referrals={referrals} authenticityToken={authenticityToken} referralsPath={referralsPath} />);
+
+    //ReactDOM.render(<Referral referrals={referrals} authenticityToken={authenticityToken} />, app);
+ 
 
   }
 }
