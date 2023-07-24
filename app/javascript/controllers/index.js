@@ -12,3 +12,6 @@ application.register("test", TestController)
 
 import ReferralController from "./referral_controller"
 application.register("referral", ReferralController)
+
+import LoginController from "./login_controller"
+application.register("login", LoginController)
